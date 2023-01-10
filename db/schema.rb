@@ -96,6 +96,8 @@ ActiveRecord::Schema.define(version: 2022_12_31_161831) do
   end
 
   create_table "items", force: :cascade do |t|
+    t.integer "admin_id"
+    t.integer "customer_id"
     t.integer "genre_id"
     t.string "name"
     t.text "introduction"
@@ -103,6 +105,8 @@ ActiveRecord::Schema.define(version: 2022_12_31_161831) do
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_items_on_admin_id"
+    t.index ["customer_id"], name: "index_items_on_customer_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -130,4 +134,6 @@ ActiveRecord::Schema.define(version: 2022_12_31_161831) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "items", "admins"
+  add_foreign_key "items", "customers"
 end
