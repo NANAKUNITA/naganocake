@@ -6,23 +6,34 @@ root 'public/homes#top'
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+  devise_for :admin, skip:[:registrations, :passwords], controllers:{
+    sessions: "admin/sessions"
+  }
+
   namespace :admin do
     get '/admin' => 'admin#top'
     resources :items
     resources :genres
-    resources :members
+    resources :customers
     resources :orders, only:[:index, :show, :update]
     resources :order_items, only:[:update]
   end
 
-  namespace :customer do
-    resources :genres, only:[:show]
-    patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
-    get 'show' => 'customers#show'
-    get 'customers/edit' => 'customers#edit'
-    patch 'update' => 'customers#update'
-    get 'confirm' => 'customers#'
+  namespace :public do
+    get '/about' => 'homes#about'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :items, only:[:index, :show, :new]do
+      get :search, on: :collection
+    end
+    resources :cart_items
+    post '/orders' => 'orders#create'
+    get '/'
+    post '/orders/confirm' => 'orders#confirm'
+    get '/orders/complete' => 'orders#complete'
+
   devise_for :admin, skip:[:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
   }
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
