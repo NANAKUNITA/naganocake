@@ -1,0 +1,34 @@
+<div class="container">
+  <h2>商品一覧</h2>
+
+  <div class="text-right index-new">
+    <%= link_to new_admin_item_path do %>
+      <button type="button" class="btn btn-success btn-success btn-circle btn-lg">+</button>
+    <% end %>
+  </div>
+
+    <table class="table table-hover">
+      <thead>
+        <tr class="active"> <!--色を指定する -->
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th><!-- この次の行に,<th></th>をつけるかどうか検討 -->
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= link_to item.id, %></td> <!--コンマ以降の書き方 -->
+          <td><%= link_to item.name, %></td>
+          <td><%= link_to item.price, %></td>
+          <td><%= link_to item.genre_id, %></td>
+          <td><%= link_to item.is_active, %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+      <%= paginate @items %>
+</div>
