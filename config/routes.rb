@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+ #root 'public/homes#top'が最初の行に来ていたことにより、Invalid route name, already in use: 'new_user_session'  (ArgumentError)You may have defined two routes with the same name using the `:as` option, or you may be overriding a route already defined by a resource with the same naming. For the latter, you can restrict the routes created with `resources` as explained here: https://guides.rubyonrails.org/routing.html#restricting-the-routes-createdのエラーが出た。2箇所も同じことを定義していないのに、と思ったら、一番上にしてた。この行を削除することにより、解決。
   devise_for :customers, skip:[:passwords], controllers:{
     registrations: "public/registrations",
     sessions: 'public/sessions'
