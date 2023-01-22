@@ -24,8 +24,7 @@ class Admin::GenresController < ApplicationController
   
   private
   def genre_params
-    params.require(:genre).permit(:name, :) #statusを記入。
+    params.require(:genre).permit(:name) #:valid_invalid_statusを記入する場合は、例えば季節限定で販売するような商品がある場合。そのときに販売中か販売停止中かを表示するステータス。
   end
     
-
 end
