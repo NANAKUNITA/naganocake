@@ -3,7 +3,7 @@ class Admin::GenresController < ApplicationController
 
   def index
   @genres=Genre.page(params[:page]).per(8)
-  @genre=Genre.new
+  @genre=Genre.new #新規に取得したレコードなので、自動的にcreateアクションが動く。
   end
   
   def create
@@ -13,7 +13,7 @@ class Admin::GenresController < ApplicationController
   end
   
   def edit
-    @genre=Genre.find(params[:id])
+    @genre=Genre.find(params[:id]) #既存のレコードを取得しているのでupdateアクションへ自動的に振り分けられ、動く。
   end
   
   def update
