@@ -1,0 +1,13 @@
+<div class="container">
+    
+    <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
+    
+    <div class="row">
+        <%= form_with (model: @customer, url: admin_customer_path(@customer)) do |f| %> <!-- form_for(@customer, url: admin_customer_path) do |f|から書き換えした。ここは後ほど、再確認する。 -->
+        <div class="col-xs-10">
+            <div class="field">
+                <%= f.label :会員ID, class: "col-xs-3" %>
+            </div>
+        </div>
+    </div>
+</div>
