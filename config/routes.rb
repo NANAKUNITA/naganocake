@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     get '/admins' => 'admins#top'
     resources :items
     resources :genres
-    resources :members
+    resources :customers
     resources :orders,only:[:index,:show,:update]
     resources :order_items, only:[:update]
   end
