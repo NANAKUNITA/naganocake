@@ -2,7 +2,7 @@
   <h2>商品一覧</h2>
 
   <div class="text-right index-new">
-    <%= link_to new_admin_item_path do %>
+    <%= link_to new_admin_item_path do %> <!-- link_toとは、リンクを作成するためのメソッド。Railsではlink_to、HTMLでは、aタグを使用する。基本的な構文は、%= link_to '表示したい文字', パス %。この基本的な構文に加え、:idがルートについている場合は、内部リンクのパスで（）のなかにパラメータを指定する必要がある。 -->
       <button type="button" class="btn btn-success btn-success btn-circle btn-lg">+</button>
     <% end %>
   </div>
@@ -21,11 +21,11 @@
       <tbody>
         <% @items.each do |item| %>
         <tr>
-          <td><%= link_to item.id, %></td> <!--コンマ以降の書き方 -->
-          <td><%= link_to item.name, %></td> <!-- link_tooとは、リンクを作成するためのメソッド。Railsではlink_to、HTMLでは、aタグを使用する -->
-          <td><%= link_to item.price, %></td> <!-- 基本的な構文は、%= link_to '表示したい文字', パス % > -->
-          <td><%= link_to item.genre_id, %></td> <!-- この基本的な構文に加え、:idがルートについている場合は、内部リンクのパスで（）のなかにパラメータを指定する必要がある。 -->
-          <td><%= link_to item.is_active, %></td>
+          <td><%= item.id %></td> 
+          <td><%= item.name %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre_id %></td>
+          <td><%= item.is_active %></td>
         </tr>
         <% end %>
       </tbody>
