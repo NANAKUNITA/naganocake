@@ -18,7 +18,34 @@
             </div><br>
             
             <div class="field">
-                <%= 
+                <%= f.label :フリガナ, class: "col-xs-3" %>
+                <%= f.text_field :last_name_kana, autofocus: true %>
+                <%= f.text_field :first_name_kana, autofocus: true %>
+            </div><br>
+            
+            <div class="field">
+                <%= f.label :郵便番号, class: "col-xs-3" %>
+                <%= f.text_field :postal_code, autofocus: true %>
+            </div><br>
+            
+            <div class="field">
+                <%= f.label :住所, class: "col-xs-3" %>
+                <%= f.text_field :address, autofocus: true %>
+            </div><br>
+            
+            <div class="field">
+                <%= f.label :電話番号, class: "col-xs-3" %>
+                <%= f.text_field :telephone_number, autofocus: true %>
+            </div><br>
+            
+            <div class="field">
+                <%= f.label :メールアドレス, class: "col-xs-3" %>
+                <%= f.text_field :email, autofocus: true %>
+            </div><br>
+            
+            <!-- 会員ステータスが有効か退会かのラジオボタンの記述 -->
+            <div class="field text-left">
+                <label><%= f.radio_button :is_deleted, "有効", checked: "checked" %></label>
             </div>
         </div>
     </div>
