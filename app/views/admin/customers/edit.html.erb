@@ -44,9 +44,20 @@
             </div><br>
             
             <!-- 会員ステータスが有効か退会かのラジオボタンの記述 -->
-            <div class="field text-left">
-                <label><%= f.radio_button :is_deleted, "有効", checked: "checked" %></label>
+            <div class="row">
+                <%= f.label :会員ステータス, class: "ml-3" %>
+                  <div class="form-check ml-4">
+                      <%= f.radio_button :is_deleted, :true %>
+                      <%= f.label :is_deleted, "有効" %>
+                      <%= f.radio_button :is_deleted, :false %>
+                      <%= f.label :is_deleted, "退会" %>
+                  </div>
             </div>
+            
+            <div class="row">
+                <%= f.submit "変更を保存", class: "btn btn-primary mt-3 mx-auto" %>
+            </div>
+            <% end %>
         </div>
     </div>
 </div>
