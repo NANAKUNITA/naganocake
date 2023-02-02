@@ -16,5 +16,10 @@ class Admin::OrdersController < ApplicationController
             end
             redirect_to admin_order_path(@order) #注文履歴詳細へ
         end
+        
+        private
+        def order_params
+            params.require(:order).permit(:status)
+        end
     
 end
