@@ -1,37 +1,58 @@
 <div class="container my-5">
     <div class="row">
-        <div class="col-xs-12">
-            <h2>注文履歴一覧</h2>
-            <!-- 購入詳細情報 -->
-            <table>
-                <tr>
-                    <th class="order-show">購入者</th>
-                    <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
-                </tr>
-                <tr>
-                    <!-- 注文個数の記入をする --><th class="order-show">注文個数</th>
-                    <td><%= @order.amount %></td><!-- 数量のカラム名はamountであっているか? -->
-                </tr>
-                <tr><!-- 注文ステータスの記入 --></tr>
-            </table>
-        </div>
+        <h2>注文履歴詳細</h2>
+        
+        <table>
+            <tr>
+                <th class="order-show">購入者</th>
+                <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+            </tr>
+            
+            <tr>
+                <th class="order-show">注文日</th>
+                <td><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            </tr>
+            
+            <tr>
+                <th class="order-show">配送先</th>
+                <td>〒<%= @order.postal_code %><%= @order.address %><br><%= @order.name %></td>
+            </tr>
+            
+            <tr>
+                <th class="order-show">支払い方法</th>
+                <td><%= @order.payment_method %></td>
+            </tr>
+            
+            <tr>
+                <th>注文ステータス</th>
+                <td>
+                    <%= form_with (model: @order, url: admin_order_path)
+                </td>
+            </tr>
+        </table>
     </div>
-    <div class="order-show">
-        <div class="col-xs-9">
-            <table class="table">
+    
+    <div class="row mt-5">
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <th>商品名</th>
-                    <th>単価（税込）</th>
-                    <th>数量</th>
-                    <th>小計</th>
-                    <th>製作ステータス</th>
-                    <th colspan="1"></th>
+                    <th>購入日時</th>
+                    <th>購入者</th>
+                    <th>注文個数</th>
+                    <th>注文ステータス</th>
                 </tr>
-                <% @order_details.each do |order_detail| %>
+            </thead>
+            
+            <tbody>
+                <% @orders.each do |order| %>
                 <tr>
-                    <td><%= order_item.item.item</td>
+                    <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order) %></td>
+                    <td><%= order.customer.last_name %>
+                        <%= order.customer.first_name %>
+                    </td>
+                    <td><%= order.order_details.amount %></td>
                 </tr>
-            </table>
-        </div>
+            </tbody>
+        </table>
     </div>
 </div>

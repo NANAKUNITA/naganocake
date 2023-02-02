@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     resources :items
     resources :genres
     resources :customers
-    resources :orders,only:[:index,:show,:update]
-    resources :order_items, only:[:update]
+    resources :orders,only:[:show,:update]
+    resources :order_details, only:[:update]
   end
   #customer
     root 'homes#top'

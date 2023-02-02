@@ -13,7 +13,7 @@
         <div class="row mt-3">
             <div class="col-sm-3">
                 <%= f.label :商品画像 %>
-                <%= f.file_field :image %><!--Q.file_fieldの使い方を質問-->
+                <%= f.file_field :image, accept: "image/*" %> <!-- file_fieldとは、ファイルの投稿をするためのフィールドであり、画像ファイル以外に音声ファイルや動画ファイルも投稿できてしまうので、'accept: "image/*"を使い、画像ファイルしか投稿できなくする。-->
             </div>
             
             <div class="col-sm-5">
