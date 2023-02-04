@@ -11,7 +11,7 @@ class Admin::CustomersController < ApplicationController
         @customer=Customer.find(params[:id])
     end
     
-    #顧客情報の更新
+    #顧客情報の更新--！変更する箇所あり！
     def update
         @customer=Customer.find(params[:id])
         if @customer.update(customer_params)

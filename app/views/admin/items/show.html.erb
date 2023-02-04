@@ -1,12 +1,12 @@
 <div class="container">
-    <h2>商品詳細</h2>
     <div class="row">
+         <h2>商品詳細</h2><br>
         <div class="col-xs-4">
             <%= image_tag @item %> <!-- ！！！ここは後ほど！！！-->
         </div>
-        
-        <div class="col-sm-4">
-            <table class="table-borderless">
+    <br><br><br><br>
+        <div class="col-xs-8">
+            <table class="table">
                 <tbody>
                     <tr>
                         <td>商品名</td>
@@ -20,28 +20,28 @@
                     
                     <tr>
                         <td>ジャンル</td>
-                        <td><%= @item.%></td> <!--Qここを質問するgenre.name? Q-->
+                        <td><%= @item.genre.name%></td> <!-- genreのカラム名がnameなので、@item.genre.nameとなる。-->
                     </tr>
                     
                     <tr>
                         <td>税込価格（税抜価格）</td>
-                        <td>
-                            <%= @item.price %>(<%= (@item.price * 1.1).floor %>)円<!--Qここを質問する-税込価格と税抜価格のカラム名は同じなんだ-->
-                        </td>
+                        <td><%= (@item.price*1.1).floor.to_s(:delimited, delimiter: ',') %>円</td>
                     </tr>
                     
                     <tr>
                         <td>販売ステータス</td>
-                        <td><%= @item.is_active %></td>
+                        <td><%= if @item.is_active == true %>
+                        販売中
+                        <% else %>
+                        販売停止中
+                        <% end %>
+                        </td><!-- Q -->
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="offset-sm-9 col-sm-2">
-            <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary" %>
+          <div class="col-md-offset-1 col-md-2 text-right">
+              <%= link_to "編集する", edit_admin_item_path(@item), class: "btn btn-primary" %>
+          </div>
         </div>
     </div>
 </div>

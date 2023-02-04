@@ -1,52 +1,53 @@
 <div class="container">
-    <div class="row">
-        <h2>商品編集</h2>
-    </div>
-    
-    <div class="row d-flex justify-content-center">
-        <% if flash[:item_updated_error] %>
-        <span class="text-danger"><%= flash[:item_updated_error] %></span><!--Qこの文章の意味を質問する-->
-        <% end %>
-    </div>
-    <%= form_with (model: @item, url: admin_item_path) do |f| %><!-- （）の中に＠itemなどを記入するときはどんなときなのかを質問する -->
-    <div class="row mt-3">
-        <div class="row mt-3">
-            <div class="col-sm-3">
-                <%= f.label :商品画像 %>
-                <%= f.file_field :image, accept: "image/*" %> <!-- file_fieldとは、ファイルの投稿をするためのフィールドであり、画像ファイル以外に音声ファイルや動画ファイルも投稿できてしまうので、'accept: "image/*"を使い、画像ファイルしか投稿できなくする。-->
-            </div>
+    <div class="col-xs-10 col-xs-offset-1">
+        <div class="row">    
+            <%= form_with (model: @item, url: admin_item_path) do |f| %><!-- （）の中に＠itemなどを記入するときはどんなときなのかを質問する -->
             
-            <div class="col-sm-5">
-                <%= f.label :商品名, class: "col-sm-4" %>
-                <%= f.text_field :name, class: "form-control col-sm-8" %>
+            <div class="col-xs-5">
+              <h2>商品編集</h2>
+              
+              <div class="item-new-form">
+                 <%= f.file_field :image, accept: "image/*" %> <!-- file_fieldとは、ファイルの投稿をするためのフィールドであり、画像ファイル以外に音声ファイルや動画ファイルも投稿できてしまうので、'accept: "image/*"を使い、画像ファイルしか投稿できなくする。-->
+              </div>
+              <div class="product-img" style="margin-top: 20px;">
+                  <%= image_tag @item.image(400,400) %> <!-- no_image.jpgを設定する？-->
+              </div>
+         </div>
+         <br><br><br>
+            <div class="col-xs-5 col-xs-offset-2">
+            <table class="new-form-table">
+               <tbody>
+                   <tr>
+                       <th>商品名</th>
+                       <td><%= f.text_field :name, class: "form-control" %></td>
+                   </tr>
+                   
+                   <tr>
+                       <th>商品説明</th>
+                       <td><%= f.text_area :introduction, class: "form-control" %></td>
+                   </tr>
+                   
+                   <tr>
+                       <th>ジャンル</th>
+                       <td><%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
+                   </tr>
+                   
+                   <tr>
+                       <th>税抜価格</th>
+                       <td><%= f.text_field :price, class: "form-control" %></td>
+                   </tr>
+                   
+                   <tr>
+                       <th>販売ステータス</th>
+                       <td><%= f.select :is_active, [["販売中","false"], ["販売不可","true"]], include_blank: "--選択してください--" %></td>
+                   </tr>
+                </tbody>
+            </table>
+              <div class="text-center">
+                <%= f.submit "変更を保存", class: "btn btn-primary text-right" %>
+              </div>
             </div>
-            
-            <div class="form-group row">
-                <%= f.label :商品説明, class: "col-sm-4">
-                <%= f.text_area :introduction, class: "form-control col-sm-8" %>
-            </div>
-            
-            <div class="form-group row">
-                <%= f.label :ジャンル, class: "col-sm-4" %>
-                <%= f.collection_select :genre_id, Genre.all, :id, :name, class: "form-control col-sm-8" %>
-            </div>
-            
-            <div class="form-group row">
-                <%= f.label :税抜価格, class: "col-sm-4" %>
-                <%= f.text_field :price, class: "form-control col-sm-7" %>
-                <span class="mt-auto ml-3">円</span> <!-- mtは上側のマージン、mlは左側のマージン-->
-            </div>
-            
-            <div class="form-group row">
-                <%= f.label :販売ステータス, class: "col-sm-4" %>
-                <%= f.select :is_active, ["販売中","販売停止中"], class: "form-control col-sm-8" %>
-            </div>
+          <% end %>
         </div>
-        
-        <div class="col-sm-3 mt-auto ml-5">
-            <%= f.submit :編集する, class: "btn btn-primary" %>
-        </div>
     </div>
-    <% end %>
-    
 </div>
