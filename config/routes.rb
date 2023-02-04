@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     resources :items
     resources :genres
     resources :customers
-    resources :orders,only:[:show,:update]
+    #resourcesは７つのアクションが全てデフォルトでついている。onlyをつけることによって、今回使うアクションのみが指定できる。
+    resources :orders,only:[:show,:update] 
     resources :order_details, only:[:update]
   end
   #customer
