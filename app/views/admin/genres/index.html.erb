@@ -4,8 +4,8 @@
         
         <h2>ジャンル一覧・追加</h2>
     <div class="form-group col-md-10">
-        <%= form_with (model: @genre, url: admin_genre_path) do |f| %> <!--form_withの引数には、モデルクラスのインスタンスを指定する。主にテーブルレコードを新規作成、更新するときに利用する。()は、なくても良い。https://pikawaka.com/rails/form_forを参照。-->
-        
+        <%= form_with (model: @genre, url: admin_genres_path) do |f| %> <!--form_withの引数には、モデルクラスのインスタンスを指定する。主にテーブルレコードを新規作成、更新するときに利用する。()は、なくても良い。https://pikawaka.com/rails/form_forを参照。-->
+        <!-- indexのページなので、url; admin_genres_path -->
         <%= f.label :ジャンル名 %>
         <%= f.text_field :name, class: "col-md-4" %><br>
         <%= f.submit "新規登録", class: "btn btn-primary" %>
@@ -26,6 +26,7 @@
                   <tr>
                       <td><%= genre.name %></td>
                       <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn-btn-primary" %></td>
+                      <!-- editへ遷移するので、パスはedit_admin_genre_path -->
                   </tr>
                   <% end %>
               </tbody>

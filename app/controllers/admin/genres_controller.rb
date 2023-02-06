@@ -2,7 +2,7 @@ class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-  @genres=Genre.page(params[:page]).per(8)
+  @genres=Genre.all
   @genre=Genre.new #新規に取得したレコードなので、自動的にcreateアクションが動く。
   end
   
@@ -20,6 +20,7 @@ class Admin::GenresController < ApplicationController
     @genre=Genre.find(params[:id])
     @genre.update(genre_params)
     redirect_to admin_genres_path
+    #updateしたらindexに遷移するため、パスはadmin_genres_path
   end
   
   private

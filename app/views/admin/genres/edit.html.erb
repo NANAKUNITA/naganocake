@@ -5,7 +5,8 @@
             <h2>ジャンル編集</h2><br>
             
             <div class="edit-genre-form">
-            <%= form_with(model: @genres, url: admin_genre_path) do |f| %>
+            <%= form_with(model: @genre, url: admin_genre_path) do |f| %>
+            <!-- updateなので、パスはurl: admin_genre_path -->
             
                 <%= f.label :ジャンル名 %>
                 <!-- <br>の入れ方はあっているのか -->

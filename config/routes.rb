@@ -4,35 +4,46 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
-
-  devise_for :admin, skip:[:registrations, :passwords], controllers:{
-    sessions: "admin/sessions"
-  }
-  #admin
-  namespace :admin do
-    get '/admins' => 'admins#top'
-    resources :items
-    resources :genres
-    resources :customers
-    #resourcesは７つのアクションが全てデフォルトでついている。onlyをつけることによって、今回使うアクションのみが指定できる。
-    resources :orders,only:[:show,:update] 
-    resources :order_details, only:[:update]
+  
+  scope module: 'customers' do
+    root 'homes#top' #topページ
+    resources :items, only: [:show, :index]
+    get 'about' => 'homes#about' #aboutページ
   end
-  #customer
-    root 'homes#top'
-    get '/about' => 'homes#about' #aboutページ
+
+  #customer側
+  namespace :customers do
+    resources :genres, only: [:show]
+    patch '/customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw' #顧客の退会処理（ステータスの更新）
+    get 'show' => 'customers#show'
+    get 'customers/edit' => 'customers#edit'
+    patch 'update' => 'customers#update'
+    get 'confirm' => 'customers#confirm'
     post '/orders/confirm' => 'orders#confirm', as: 'confirm' #注文情報確認画面への遷移
     get '/orders/complete' => 'orders#complete' #注文完了画面
     get '/orders/new' => 'orders#new' #注文情報入力画面（支払方法・配送先の選択）
-    delete '/cart_items/destroy_all' => 'destroy_all' #カート内商品データ削除（全て）
+    resources :orders, only: [:create, :new, :index, :show]
+    #destroy_allとdestroy_itemはdestroyで統一してもいいのか
+    resources :cart_items, only: [:index, :create, :update, :destroy_all, :destroy_item]
+　　delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all' #カート内商品データ削除（全て）
     resources :customers, only: [:show, :edit, :update]
     get '/customers/confirm_withdraw' => 'customers#confirm_withdraw', as: 'confirm_withdraw' #顧客の退会確認画面
-    patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw' #顧客の退会処理（ステータスの更新）
-    resources :addresses, except: [:new, :show] #exceptは指定したくないアクションを適用するときに使う
-    resources :cart_items, except: [:new, :show, :edit]
-    resources :items, only: [:index, :show]
-    resources :genres, only: [:index] do
-    resources :items, only: [:index]
+    resources :addresses, only: [:index, :create, :destroy, :edit] #exceptは指定したくないアクションを適用するときに使う
   end
-    resources :orders, except: [:edit, :update, :destroy]
+  
+  #admin側
+    devise_for :admin, skip:[:registrations, :passwords], controllers:{
+    sessions: "admin/sessions"
+  }
+  
+  namespace :admin do
+    get '/admins' => 'admins#top'
+    resources :items, only:[:show, :index, :new, :create, :edit, :update]
+    resources :genres, only:[:index, :create, :edit, :update]
+    resources :customers, only:[:index, :edit, :update, :show]
+    #resourcesは７つのアクションが全てデフォルトでついている。onlyをつけることによって、今回使うアクションのみが指定できる。
+    resources :orders, only:[:show,:update] 
+    resources :order_details, only:[:update]
+  end
+
 end

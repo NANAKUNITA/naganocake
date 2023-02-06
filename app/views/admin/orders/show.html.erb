@@ -66,9 +66,9 @@
         </div>
         
         <div class="total">
-            <h4>商品合計 <%= @order.total_payment %></h4>
-            <h4>送料 <%= @order.shipping_cost %>円</h4>
-            <h4>請求金額合計 <%= (@order.total_payment+@order.shipping_cost) %>円</h4>
+            <h4>商品合計 <%= @order.total_payment - @order.postage).to_s(:delimited, delimiter: ',') %></h4>
+            <h4>送料 <%= @order.shipping_cost.to_s(:delimited, delimiter: ',') %>円</h4>
+            <h4>請求金額合計 <%= @order.total_payment.to_s(:delimited, delimiter: ',') %>円</h4>
         </div>
     </div>
 </div>
