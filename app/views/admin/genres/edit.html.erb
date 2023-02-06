@@ -1,13 +1,15 @@
 <div class="container">
     <div class="row">
         
-        <div class="col-xs-9">
+        <div class="col-xs-10 col-xs-offset-1">
             <h2>ジャンル編集</h2><br>
             
-            <%= form_for @genres, url: admin_genres_path(@genre.id) do |f| %>
-              <div class="field row">
-                <label>ジャンル名</label>
-                  <%= f.text_field :name %>
+            <div class="edit-genre-form">
+            <%= form_with(model: @genres, url: admin_genre_path) do |f| %>
+            
+                <%= f.label :ジャンル名 %>
+                <!-- <br>の入れ方はあっているのか -->
+                <%= f.text_field :name, class: "col-md-4" %><br>
                   
                   <%= f.submit "変更を保存", class: "btn btn-primary" %>
               </div>
