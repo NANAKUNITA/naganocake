@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-9">
+            <div>
+                <%= image_tag 'homes-top.jpg' %>
+                    <p class="font-text">
+                        ようこそ、ながのCAKEへ！<br>
+                        このサイトは、ケーキ販売のECサイトになります。<br>
+                        会員でない方も商品の閲覧はできますが、<br>
+                        購入には会員登録が必要になります。
+                    </p>
+            </div>
+            <br>
+            <h4 class="recommendation"><i class="fas fa-crown"></i>新着商品<i class="fas fa-crown"></i></h4><br>
+            <div class="row">
+                
+              <div id="multiple-items">
+                <%= @items.each do |item| %>
+                <div class="recommendation-items">
+                    <!-- 画像をクリックすると、public/items/showへ移動する -->
+                    <%= link_to public_items_path(item.id) do %>
+                    <%= image_tag @item.image(100,100), fallcack: "no_image.jpg" %>
+                    <% end %>
+                    <p><%= item.name</p>
+                    <p>¥<%= (@item.price*1.1).floor.to_s(:delimited, delimiter: ',') %></p>
+                </div>
+                <% end %>
+        </div>
+                </div>
+        </div>
+</div>
