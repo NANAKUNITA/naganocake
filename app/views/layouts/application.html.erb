@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Naganocake</title>
+    <title class="text-success">NaganoCake</title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/5c442e0d91.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
   </head>
 
+  <body data-turbolinks="false">
+    <div id="wrapper">
+        <header>
+          <div class="container">
+            <nav class="nav navbar-nav navbar-left">
+              <%= link_to root_path do %>
+              <%= image_tag "logo2.jpg", :size =>'80x80' %>
+              <% end %>
+            </nav>
+            <nav>
+              <ul class="nav navbar-nav navbar-right wf-mplus1p">
+                <!-- 会員でログインしている時 -->
+                <% if customer_signed_in? %>
+                  <li id="youkoso">ようこそ、<%= current_customer.last_name %>さん！</li>
+                  <li><%= link_to customer_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
+                  <li><%= link_to items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li><%= link_to cart_items_path do %><div class="icon-flex"><i class="icon-count text-center"><%= current_member.cart_items.count %></i></div><i class="cart">カート</i><% end %></li>
+                  <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
+                <!-- 管理者でログインしている時 -->
+                <% elsif admin_signed_in?%>
+                  <li><%= link_to ' 商品一覧', admin_items_path %></li>
+                  <li><%= link_to ' 会員一覧', admin_customers_path %></li>
+                  <li><%= link_to ' 注文履歴一覧', admin_root_path %></li>
+                  <li><%= link_to ' ジャンル一覧', admin_genres_path %></li>
+                  <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete %></li>
+                <!-- ログインしていない時 -->
+                <% else %>
+                  <li><%= link_to items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li><%= link_to about_path do %><i class="fas fa-building"></i>About<% end %></li>
+                  <li><%= link_to new_customer_registration_path do %><i class="fas fa-user-plus"></i>新規登録<% end %></li>
+                  <li><%= link_to new_customer_session_path do %><i class="fas fa-sign-in-alt"></i>ログイン<% end %></li>
+                <% end %>
+              </ul>
+            </nav>
+          </div>
+        </header>
 
-  <% if customer_signed_in? %>
-    <body id="wrapper" style="background-color: white; font-family: HiraMinPro-W6; color: #000000;">
-    <!-- ヘッダー -->
-    <div id="header">
-      <%= render "layouts/header" %>
+        <main id="content">
+          <%= yield %>
+        </main>
+
+        <footer id="footer">
+        </footer>
+      <!-- </div> -->
     </div>
-
-    <!-- Body部分 -->
-    <div class="container" style="margin-top: 20px;">
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% elsif admin_signed_in? %>
-    <body id="wrapper" style="background-color: #EEEEEE; font-family: HiraMinPro-W6; color: #000000;">
-    <!-- ヘッダー -->
-    <div id="header">
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div class="container" style="margin-top: 20px;">
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% else %>
-    <body id="wrapper" style="background-color: white; font-family: HiraMinPro-W6; color: #000000; ">
-    <!-- ヘッダー -->
-    <div id="header">
-      <%= render "layouts/header" %>
-    </div>
-
-    <!-- Body部分 -->
-    <div class="container" style="margin-top: 20px;">
-      <%= yield %>
-    </div>
-
-    <!-- Footer -->
-    <%= render "layouts/footer" %>
-    </body>
-  <% end %>
+  </body>
 </html>
