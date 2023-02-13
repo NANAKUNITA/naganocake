@@ -1,31 +1,40 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-9">
-            <div>
-                <%= image_tag 'homes-top.jpg' %>
-                    <p class="font-text">
+<div class="row login-row">
+    <div class="col-xs-3">
+    </div>
+    <div class="col-xs-9">
+        <div class="main-visual">
+                    <p class="main-visual-text">
                         ようこそ、ながのCAKEへ！<br>
                         このサイトは、ケーキ販売のECサイトになります。<br>
                         会員でない方も商品の閲覧はできますが、<br>
                         購入には会員登録が必要になります。
                     </p>
+                    <%= image_tag "homes-top.jpg" %>
+        </div>
+    </div>
+        <div class="recommend">
+            <h2><strong>新着商品</strong></h2>
+            <% @items.each do |item| %>
+            <div class="product-box">
+                <table class="table">
+                    <tr>
+                        <th><%= link_to item_path(item) do %>
+                        <%= image_tag(item, :image, size: "180×130", fallback: "no_image.jpg") %>
+                        <% end %>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th><%= link_to item.name, item_path(item) %></th>
+                    </tr>
+                    <tr>
+                        <th>¥<%= (item.price*1.1).to_i %></th>
+                    </tr>
+                </table>
             </div>
-            <br>
-            <h4 class="recommendation"><i class="fas fa-crown"></i>新着商品<i class="fas fa-crown"></i></h4><br>
-            <div class="row">
-                
-              <div id="multiple-items">
-                <%= @items.each do |item| %>
-                <div class="recommendation-items">
-                    <!-- 画像をクリックすると、public/items/showへ移動する -->
-                    <%= link_to public_items_path(item.id) do %>
-                    <%= image_tag @item.image(100,100), fallcack: "no_image.jpg" %>
-                    <% end %>
-                    <p><%= item.name</p>
-                    <p>¥<%= (@item.price*1.1).floor.to_s(:delimited, delimiter: ',') %></p>
-                </div>
-                <% end %>
+         <% end %>
         </div>
-                </div>
-        </div>
+    </div>
+    <div class="index-link">
+        <%= link_to "すべての商品を見る>", items_path %>
+    </div>
 </div>

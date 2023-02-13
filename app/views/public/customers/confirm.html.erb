@@ -1,0 +1,23 @@
+<div class="continer my-5">
+    <div claass="row">
+        <div class="offset-1">
+            <h1 class="red-border px-3">本当に退会しますか？</h1>
+        </div>
+    </div>
+    
+    <div class="row my-5">
+        <div class="offset-2">
+            <p>退会すると、会員登録情報や<br>
+            これまでの購入履歴が閲覧できなくなります。<br>
+            退会する場合は、「退会する」をクリックしてください。</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-3 col-2">
+            <%= link_to "退会しない", customer_path(current_customer), class: "btn btn-outline-danger" %>
+        </div>
+        <div class="offset-2 col-2">
+            <%= link_to "退会する", customers_withdraw_path(@customer), method: :patch, class: "btn btn-danger" %>
+        </div>
+    </div>
+</div>

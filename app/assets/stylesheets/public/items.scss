@@ -1,3 +1,22 @@
 // Place all the styles related to the public/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.detail{
+    float:  left;
+    margin-left: 30px;
+}
+.detail span{
+    font-size: 10px;
+}
+.item-box{
+    float: left;
+}
+.item-image{
+    float: left;
+}
+.quantity-select-form{
+    margin-right: 50px;
+}
+.item-price{
+    margin-bottom: 50px;
+}

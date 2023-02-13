@@ -1,3 +1,52 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #6c6b6b;
+}
+
+.recommend h2{
+    padding-top: 40px;
+}
+
+.main {
+  width: 840px; /* 横幅840px */
+  display: flex; /* Flexboxの利用 */
+  justify-content: center; /* 要素の横並び・中央寄せ */
+  margin: 0 auto;
+}
+.main-visual {
+  position: relative;
+}
+.img{
+  width: 100%; /* divの幅に対する割合 */
+  text-align: center;
+}
+.main-visual-text{
+  color: #fff; /* 文字色 */
+  font-size: 24px; /* 文字の大きさ */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  /*https://yoncoichi.com/text-on-the-image/#toc1を参照*/
+}
+
+.homes_image{
+    height: 10em;
+    position: relative
+}
+
+/*aboutページ*/
+.about_title{
+  position: relative;
+}
+
+.about_title h1{
+  text-align: center;
+  width: 300px;
+  position: relative;
+}

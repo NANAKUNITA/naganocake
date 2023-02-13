@@ -3,8 +3,7 @@
 <!-- form_withに変換するときに、idとclassを指定しなくても動く-->
 <%= form_with model: @customer, url: customer_registration_path do |f| %>
 <!-- %render "customers~"じゃなくて、"public"にしないとエラーになる-->
-  <%= render "public/shared/error_messages", resource: resource %>
-
+<%= devise_error_messages! %>
   <div class="row">
     <label class="col-lg-3">名前</label>
     <div class="col-lg-3">
@@ -77,7 +76,7 @@
   <h3>既に登録済みの方</h3>
   <div class="col-lg-3">
     <%- if controller_name != 'sessions' %>
-    <%= link_to "こちら", new_customer_session_path(resource_name) %>
+    <%= link_to "こちら", new_customer_session_path %>
     <% end %>
   </div>
 <% end %>
