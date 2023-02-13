@@ -2,24 +2,24 @@
     
     <h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h1>
     
-        <%= form_with (model: @customer, url: admin_customer_path) do |f| %> 
+        <%= form_with model: @customer, url: admin_customer_path do |f| %> 
         
         <table class="row table">
             <tr>
                 <th class="col-xs-2"><%= f.label :会員ID %></th>
-                <td class="col-xs-10"><%= f.text_field :id, class: "form-control" %></td>
+                <td class="col-xs-10"><%= @customer.id %></td>
             </tr>
             
             <tr>
                 <th><%= f.label :氏名 %></th>
-                <td><%= f.text_field :last_name, class: "form-control" %>
+                <td><%= f.text_field :last_name, class: "form-control" %><br>
                     <%= f.text_field :first_name, class: "form-control" %>
                 </td>
             </tr>
             
             <tr>
                 <th><%= f.label :フリガナ %></th>
-                <td><%= f.text_field :last_name_kana, class: "form-control" %>
+                <td><%= f.text_field :last_name_kana, class: "form-control" %><br>
                     <%= f.text_field :first_name_kana, class: "form-control" %>
                 </td>
             </tr>

@@ -1,7 +1,7 @@
 <div class="container my-5">
    <div class="row">
       <div class="offset-sm-1">
-           <h2 class="red-border px-3 pb-1">My Page</h2>
+           <h2 class="red-border px-3 pb-1">マイページ</h2>
       </div>
     </div>
 
@@ -24,7 +24,7 @@
            </tr>
 
            <tr class="brown-border">
-                <td>フリガナ</td>
+                <td>カナ</td>
                 <td>
                     <%= @customer.last_name_kana %>
                     <%= @customer.first_name_kana %>
@@ -55,10 +55,6 @@
         <div class="row">
            <%= link_to "編集する", edit_customer_path(@customer), class: "btn btn-outline-danger mx-auto my-1" %>
          </div>
-         <div class="row">
-              <%= link_to "パスワードを変更する", edit_customer_registration_path, class: "btn btn-outline-danger mx-auto my-1" %>
-         </div>
-
      </div>
 
         <div class="offset-sm-1 col-sm-3">

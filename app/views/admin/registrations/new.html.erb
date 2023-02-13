@@ -1,4 +1,5 @@
-<h2>ログイン</h2>
+<div class="container my-5">
+<h3>ログイン</h3>
 
 <%= form_with model: @admin, url: registration_path do |f| %>
 <%= devise_error_messages! %>
@@ -25,5 +26,6 @@
     <%= f.submit "ログイン" %>
   </div>
 <% end %>
+</div>
 
 <%= render "admin/shared/_links" %>

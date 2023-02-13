@@ -1,5 +1,5 @@
 class Public::CartItemsController < ApplicationController
-    before_action :authenticate_client!
+    before_action :authenticate_customer!
     def create
         @cart_items=current_customer.cart_items.all
         if cart_items_params[:amount] !=""

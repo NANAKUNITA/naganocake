@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-5">
     <div class="row">
     <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2><br>
     <table class="row table">
@@ -7,9 +7,9 @@
             <th class="col-xs-2">会員ID</th>
             <td class="col-xs-10"><%= @customer.id %>
             <% if @customer.is_deleted == false %> <!-- Q. デフォルトを書く？-->
-              <span class="label label-primary">有効会員</span>
+              <span class="label label-primary"></span>
             <% else %>
-              <span class="label label-danger">退会済み</span>
+              <span class="label label-danger"></span>
             <% end %>
             </td>
         </tr>
@@ -47,7 +47,7 @@
     
     <div class="row">
     <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-primary" %>
-    <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+    <%= link_to "注文履歴一覧を見る", admin_root_path, class: "btn btn-primary" %>
     </div>
   </div> 
 </div>

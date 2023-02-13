@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <div class="row">
+        <h2>注文履歴一覧</h2>
+    </div>
+        <div class="row mt-5 col-xs-10 col-xs-offset-1" style="margin-top: 50px;">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="table-head" style="background-color:#F5F5F5;">
+                        <th scope="col">購入日時</th>
+                        <th scope="col">購入者</th>
+                        <th scope="col">注文個数</th>
+                        <th scope="col">注文ステータス</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @homes.each do |home| %>
+                    <tr>
+                        <td><%= link_to order.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_order_path(order) %></td>
+                        <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
+                        <td><%= order.order_details.sum(:amount) %></td>
+                        <td><%= order.status %></td>
+                    </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3 col-xs-offset-5">
+                    <%= paginate @homes %>
+                </div>
+            </div>
+        </div>

@@ -1,13 +1,14 @@
-<div class="container text-center"> <!-- text-centerとは、Bootstrapを使って中央寄せをする指定する方法。詳しくは、https://qiita.com/Rock22/items/e4e89f15c29e1415977dを参照。-->
+<div class="container my-5"> <!-- text-centerとは、Bootstrapを使って中央寄せをする指定する方法。詳しくは、https://qiita.com/Rock22/items/e4e89f15c29e1415977dを参照。-->
     <div class="row">
         <h2>会員一覧</h2>
     </div>
         
-        <div class="col-xs-10 member-index">
+        <div class="row mt-3">
             <!-- ジャンル一覧 -->
+            <div class="offset-sm-1 col-sm-10">
             <table class="table table-hover">
                 <thead>
-                    <tr class="active">
+                    <tr>
                         <th>会員ID</th>
                         <th>氏名</th>
                         <th>メールアドレス</th>
@@ -18,15 +19,30 @@
                   <% @customers.each do |customer| %>
                     <tr>
                       <td><%= customer.id %></td>
-                      <td><%= link_to admin_customer_path(customer) do %><%= customer.last_name %><%= customer.first_name %><% end %></td>
+                      <td><%= link_to admin_customer_path(customer) do %>
+                          <%= customer.last_name %>
+                          <%= customer.first_name %>
+                          <% end %>
+                      </td>
                       <!-- ↑氏名をクリックしたら、admin/customerのshowへ遷移するため、link_toの後のパスは、showのパスを指定する。 -->
                       <td><%= customer.email %></td>
-                      <td><%= customer.is_deleted %></td> <!-- 退会ステータスのカラム名を記入 -->
+                      <td><% if customer.is_deleted == false %>
+                         有効
+                         <% else %>
+                         退会
+                         <% end %>
+                      </td> 
                     </tr>
-                    <% end %>
+                   <% end %>
                 </tbody>
             </table>
-            <%= paginate @customers %>
-        </div>
-    </div>
+           </div>
+       </div>
+       <div class="container">
+           <div class="row">
+               <div class="col-md-4 offset-md-4 py-2 mt-5">
+                   <%= paginate @customers %>
+               </div>
+           </div>
+       </div>
 </div>

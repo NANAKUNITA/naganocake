@@ -1,6 +1,6 @@
+<div class="container my-5">
 <div class="row login-row">
-    <h2>ショッピングカート</h2>
-    <%= button_to 'カートを空にする', @cart_item, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？', class: "btn btn-danger destroy-all" %>
+    <h2 class="offset-sm-1 px-3 pb-1">ショッピングカート</h2>
     <div class="row">
         <table class="table table-bordered cart-table">
             <thead class="thead-light">
@@ -47,4 +47,5 @@
             <!-- order/newへ。（注文情報入力画面（支払い方法・配送先の選択））-->
         <% end %>
     </div>
+</div>
 </div>

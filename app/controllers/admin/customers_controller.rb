@@ -11,13 +11,13 @@ class Admin::CustomersController < ApplicationController
         @customer=Customer.find(params[:id])
     end
     
-    #顧客情報の更新--！変更する箇所あり！
+    #顧客情報の更新
     def update
         @customer=Customer.find(params[:id])
         if @customer.update(customer_params)
-            redirect_to admin_customer_path(@customer)
+            redirect_to admin_customer_path
         else
-            render "edit"
+            redirect_to edit_admin_customer_path(@customer)
         end
     end
     

@@ -1,6 +1,6 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
-  def index 　#！ここ修正かも！
+  def index
     @items=Item.page(params[:page]).per(10)
   end
 
@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item=Item.new(item_params)
     if @item.save
-      redirect_to admin_item_path(@item)
+      redirect_to admin_item_path#ここはいらない？
     else
       redirect_to new_admin_item_path
     end
@@ -28,7 +28,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item=Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to admin_item_path(@item)
+      redirect_to admin_item_path(@item.id)
     else
       redirect_to edit_admin_item_path(@item)
     end
