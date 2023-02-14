@@ -1,6 +1,6 @@
 class Public::OrdersController < ApplicationController
-     before_action :authenticate_client!
-     before_action :request_post?, only: [:confirm]
+     before_action :authenticate_customer!
+     #before_action :request_post?, only: [:confirm]
      before_action :order_new?, only: [:new]
 
      def index
@@ -52,8 +52,43 @@ class Public::OrdersController < ApplicationController
             end
          end
          
-         @
+         @cart_items =CartItem.where(customer_id: current_customer.id)
+         @total=0
      end
      
+     def complete
+     end
+     
+     def create
+         @order=Order.new(order_params)
+         @order.customer_id=current_customer.id
+         @order.save
+         current_customer.cart_items.each do
+             @order_item=OrderItem.new
+             @order_item.item_id=cart_item.item_id
+             @order_item.amount=cart_item.amount
+             @order_item.save
+         end
+         current_customer.cart_items.destroy_all
+         redirect_to orders_complete_path
+     end
+     
+     private
+     
+     def order_new?
+         redirect_to cart_items_path
+     end
+     
+    # def request_post?
+         #redirect_to 
+     #end
+     
+     def order_params
+         params.require(:order).permit(:payment_method, :address, :shipping_cost, :postal_code, :name, :total_payment, :status)
+     end
+     
+     def address_params
+         params.permit(:address, :name, :postal_code, :customer_id)
+     end
 
 end

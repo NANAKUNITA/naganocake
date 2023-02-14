@@ -29,16 +29,16 @@ header {
   margin: 0 auto;
   background-color: seagreen;
 }
+body{
+  font-family: sans-serif;
+  font-size: 20px;
+  color: #000000;
+  line-height: 1;
+}
 
-
-.header-logo{
-   font-weight: bold;
-   font-size:40px;
-   padding-top: 6px;
- }
- 
 .shop_logo{
   width: 30%;
+  display: block;
 }
 
 
@@ -99,5 +99,10 @@ footer{
   margin-right: 50px;
 }
 
-
+.submit{
+    border: 1px solid #999;
+    padding: 10px;
+    background: #fff9cc;
+    margin-top:10px;
+}
 

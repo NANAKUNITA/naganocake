@@ -1,16 +1,19 @@
 <div class="container my-5">
-<h2>ログイン</h2>
-<!-- urlはあっているのだろうか -->
+<h2>ログイン</h2><br>
 <%= form_with model: @customer, url: customer_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="row">
+    <label class="col-lg-3"><h4>メールアドレス</h4></label>
+    <div class="col-lg-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div><br>
 
-  <div class="field">
-    <%= f.label :password %><br />
+  <div class="row">
+    <label class="col-lg-3"><h4>パスワード</h4></label>
+    <div class="col-lg-3">
     <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    </div>
+  </div><br>
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
@@ -19,18 +22,17 @@
     </div>
   <% end %>
 
-  <div class="actions">
+  <div class="align" class= "submit">
     <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>
   <br><br>
 <% end %>
 
-  <div class="row">
+  <div class="action">
     <div clas="col-xs-5">
       <h4>会員登録がお済みでない方</h4>
       <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <%= link_to "こちら", new_customer_registration_path(resource_name) %>
-      <strong>から新規登録を行なってください。</strong>
+      <%= link_to "こちら", new_customer_registration_path(resource_name) %><strong>から新規登録を行なってください。</strong>
       <% end %>
     </div>
   </div>

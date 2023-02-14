@@ -1,18 +1,16 @@
+<div class="container my-5">
 <div class="row login-row">
-    <div class="col-xs-3">
-    </div>
     <div class="col-xs-9">
-        <div class="main-visual">
-                    <p class="main-visual-text">
-                        ようこそ、ながのCAKEへ！<br>
-                        このサイトは、ケーキ販売のECサイトになります。<br>
-                        会員でない方も商品の閲覧はできますが、<br>
-                        購入には会員登録が必要になります。
-                    </p>
-                    <%= image_tag "homes-top.jpg" %>
+        <div class="first-view">
+            <div class="first-view-text">
+              <h3>ようこそ、ながのCAKEへ！<br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員でない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。
+               </h3>
+            </div>
         </div>
-    </div>
-        <div class="recommend">
+        <div class="recommend my-5">
             <h2><strong>新着商品</strong></h2>
             <% @items.each do |item| %>
             <div class="product-box">
@@ -34,7 +32,8 @@
          <% end %>
         </div>
     </div>
-    <div class="index-link">
+    <div class="index-link ml-5">
         <%= link_to "すべての商品を見る>", items_path %>
     </div>
+</div>
 </div>

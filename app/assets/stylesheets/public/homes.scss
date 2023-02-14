@@ -7,39 +7,23 @@
   box-sizing: border-box;
   color: #6c6b6b;
 }
+@charset "utf-8";
+
+img{
+  max-width: 100%;
+}
 
 .recommend h2{
     padding-top: 40px;
 }
 
-.main {
+.login-row {
+  height: 500px;
   width: 840px; /* 横幅840px */
   display: flex; /* Flexboxの利用 */
   justify-content: center; /* 要素の横並び・中央寄せ */
   margin: 0 auto;
 }
-.main-visual {
-  position: relative;
-}
-.img{
-  width: 100%; /* divの幅に対する割合 */
-  text-align: center;
-}
-.main-visual-text{
-  color: #fff; /* 文字色 */
-  font-size: 24px; /* 文字の大きさ */
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  /*https://yoncoichi.com/text-on-the-image/#toc1を参照*/
-}
-
-.homes_image{
-    height: 10em;
-    position: relative
-}
-
 /*aboutページ*/
 .about_title{
   position: relative;
@@ -49,4 +33,14 @@
   text-align: center;
   width: 300px;
   position: relative;
+}
+
+.firs-view{
+  height: calc(100vh - 110px);
+  background_image: url("../app/aseets/images/homes_top.jpg");
+  background_repeat: no-repeat;
+  background_position: center center;
+  background_size: cover;
+  display: flex;
+  align-items: center;
 }
