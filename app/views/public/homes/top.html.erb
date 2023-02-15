@@ -3,29 +3,30 @@
     <div class="col-xs-9">
         <div class="first-view">
             <div class="first-view-text">
-              <h3>ようこそ、ながのCAKEへ！<br>
+              <h6>ようこそ、ながのCAKEへ！<br>
                 このサイトは、ケーキ販売のECサイトになります。<br>
                 会員でない方も商品の閲覧はできますが、<br>
                 購入には会員登録が必要になります。
-               </h3>
+               </h6>
             </div>
         </div>
         <div class="recommend my-5">
             <h2><strong>新着商品</strong></h2>
-            <% @items.each do |item| %>
+        <% @items.each do |item| %>
             <div class="product-box">
                 <table class="table">
                     <tr>
-                        <th><%= link_to item_path(item) do %>
-                        <%= image_tag(item, :image, size: "180×130", fallback: "no_image.jpg") %>
+                        <td><%= link_to item_path(item) do %>
+                        <%= image_tag item.get_image %>
                         <% end %>
-                        </th>
+                        </td>
                     </tr>
                     <tr>
-                        <th><%= link_to item.name, item_path(item) %></th>
+                        <td><%= link_to item.name, item_path(item) %></td>
                     </tr>
                     <tr>
-                        <th>¥<%= (item.price*1.1).to_i %></th>
+                        <td>¥<%= (item.price*1.1).to_i %></td>
+                        <!-- priceと*1.1の間は空けない -->
                     </tr>
                 </table>
             </div>

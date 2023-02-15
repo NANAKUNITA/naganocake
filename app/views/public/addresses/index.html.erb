@@ -1,0 +1,44 @@
+<div class="container my-5">
+   <h2>配送先登録/一覧</h2>
+    <%= form_with model: @address, url:addresses_path, method: :post do |f| %>
+    <div class="field">
+                  <label class="postal-code-label">郵便番号(ハイフンなし)</label><br>
+                  <%= f.text_field :postal_code, autofocus: true, class:"" %>
+                </div>
+                <div class="field"><br>
+                  <label class="address-label">住所</label><br>
+                  <%= f.text_field :address, autofocus: true, class:"", size:"60*60" %>
+                </div>
+                 <div class="field"><br>
+                <label class="address-label">宛名</label><br>
+                 <%= f.text_field :name, autofocus: true, class:"", size:"30*30" %>
+                </div>
+      <div class="col-xs-1"><br><br>
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+
+     <table  class="table table-bordered">
+        <tr>
+            <th>郵便番号</th>
+            <th>住所</th>
+            <th>宛名</th>
+            <th></th>
+        </tr>
+        <% @addresses.each do |address| %>
+        <tr>
+            <td><%= address.postal_code %></td>
+            <td><%= address.address %></td>
+            <td><%= address.name %></td>
+            <td>
+                <!--idが必要  edit_public_address_path-->
+                <%= link_to "編集する", edit_address_path(address),method: :get , class: "btn btn-primary" %> <%= link_to "削除する", address_path(address), method: :delete , class: "btn btn-danger" %><!-- pathにid必要 public_address_path-->
+            </td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="col-xs-6 col-xs-offset-4 ">
+          <%= paginate @addresses %>
+      </div>
+</div>

@@ -29,7 +29,7 @@ class Public::CartItemsController < ApplicationController
         @cart_items=current_customer.cart_items.all
         @sum=0
         @cart_items.each do |cart_item|
-            @subtotal=(Product.find(cart_item.item_id).price*1.1*cart_item.amount).to_i
+            @subtotal=(Item.find(cart_item.item_id).price*1.1*cart_item.amount).to_i
             @sum += @subtotal
         end
     end
@@ -37,7 +37,7 @@ class Public::CartItemsController < ApplicationController
     def update
         @cart_item=CartItem.find(params[:id])
         @cart_item.amount=params[:cart_item][:id]
-        @cart_item.update(cart_items_path)
+        @cart_item.update(cart_items_params)
         flash[:success]="個数を変更しました"
         redirect_back(fallback_location: root_path)
     end

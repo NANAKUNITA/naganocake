@@ -8,11 +8,16 @@
           <div class="item-box">
             <table class="table">
                 <tr>
-                    <th><%= link_to item_path(item) do %></th>
+                    <th><%= link_to item_path(item) do %>
+                        <%= image_tag item.get_image %>
                     <% end %>
+                    </th>
                 </tr>
                 <tr>
-                    <th>¥<%= (item.price *1.1).to_i %></th>
+                    <th><%= item.name %></th>
+                </tr>
+                <tr>
+                    <th>¥<%= (item.price*1.1).to_i %></th>
                 </tr>
             </table>
           </div>

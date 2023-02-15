@@ -1,7 +1,6 @@
 class Public::OrdersController < ApplicationController
      before_action :authenticate_customer!
      #before_action :request_post?, only: [:confirm]
-     before_action :order_new?, only: [:new]
 
      def index
         @orders=current_customer.orders
@@ -28,16 +27,16 @@ class Public::OrdersController < ApplicationController
      def confirm
          params[:order][:payment_method]=params[:order][:payment_method].to_i#payment_methodの数値に変換
          @order=Order.new(order_params) #情報を渡している
-         if params[:order][:address_number] == "1"
+         if params[:address_select] == "radio1"
              @order.postal_code=current_customer.postal_code
              @order.address=current_customer.address
-             @order.name=current_customer.last_name+current_member.first_name
+             @order.name=current_customer.last_name+current_customer.first_name
              
-        elsif params[:order][:address_number] == "2"
-                 @order.postal_code=Address.find(params[:order][:address]).postal_code
-                 @order.address=Address.find(params[:order][:address]).address
-                 @order.name=Address.find(params[:order][:address]).name
-        elsif params[:order][:address_number] == "3"
+        elsif params[:address_select] == "radio2"
+                 @order.postal_code=Address.find(params[:address][:address]).postal_code
+                 @order.address=Address.find(params[:address][:address]).address
+                 @order.name=Address.find(params[:address][:address]).name
+        elsif params[:address_select] == "radio3"
                  @address=Address.new
                  @address.address=params[:order][:address]
                  @address.name=params[:order][:name]
@@ -75,10 +74,7 @@ class Public::OrdersController < ApplicationController
      
      private
      
-     def order_new?
-         redirect_to cart_items_path
-     end
-     
+
     # def request_post?
          #redirect_to 
      #end

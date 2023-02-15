@@ -7,14 +7,15 @@
   box-sizing: border-box;
   color: #6c6b6b;
 }
-@charset "utf-8";
 
 img{
-  max-width: 100%;
+  max-width: 50%;
+  text-align: center;
 }
 
-.recommend h2{
+.recommend h6{
     padding-top: 40px;
+    justify-content: center;
 }
 
 .login-row {
@@ -26,15 +27,15 @@ img{
 }
 /*aboutページ*/
 .about_title{
-  position: relative;
+  margin-right: 100px;
+  margin-left: 100px;
+  text-align: center;
 }
 
 .about_title h1{
   text-align: center;
-  width: 300px;
   position: relative;
 }
-
 .firs-view{
   height: calc(100vh - 110px);
   background_image: url("../app/aseets/images/homes_top.jpg");

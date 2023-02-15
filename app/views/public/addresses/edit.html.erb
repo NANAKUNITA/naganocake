@@ -1,0 +1,22 @@
+<div class="my-5">
+<div class="row login-row">
+<h2>配送先編集</h2>
+
+<%= form_with model: @address do |f| %>
+	<div class="field"><br><br><br><br>
+     <label class="postal-code-label">郵便番号(ハイフンなし)</label><br><br>
+     <%= f.text_field :postal_code, autofocus: true, class:"" %>
+ </div>
+ <div class="field"><br>
+      <label class="address-label">住所</label><br>
+      <%= f.text_field :address, autofocus: true, class:"", size:"60*60" %>
+ </div>
+ <div class="field"><br>
+      <label class="address-label">宛名</label><br>
+      <%= f.text_field :name, autofocus: true, class:"", size:"30*30" %>
+ </div>
+<br><br>
+	<%= f.submit "更新する", class: "btn btn-primary submit" %>
+<% end %>
+</div>
+</div>

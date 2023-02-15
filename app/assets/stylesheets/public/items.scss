@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 .detail{
-    float:  left;
+    float: left;
     margin-left: 30px;
 }
 .detail span{
@@ -19,4 +19,8 @@
 }
 .item-price{
     margin-bottom: 50px;
+}
+img{
+  max-width: 0%;
+  text-align: center;
 }

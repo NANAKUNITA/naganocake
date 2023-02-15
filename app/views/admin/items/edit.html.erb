@@ -1,16 +1,13 @@
 <div class="container my-5">
     <div class="col-xs-10 col-xs-offset-1">
         <div class="row">    
-            <%= form_with (model: @item, url: admin_item_path) do |f| %><!-- （）の中に＠itemなどを記入するときはどんなときなのかを質問する -->
+            <%= form_with model: @item, url: admin_item_path do |f| %><!-- （）の中に＠itemなどを記入するときはどんなときなのかを質問する -->
             
             <div class="col-xs-5">
               <h2>商品編集</h2>
               
               <div class="item-new-form">
                  <%= f.file_field :image, accept: "image/*" %> <!-- file_fieldとは、ファイルの投稿をするためのフィールドであり、画像ファイル以外に音声ファイルや動画ファイルも投稿できてしまうので、'accept: "image/*"を使い、画像ファイルしか投稿できなくする。-->
-              </div>
-              <div class="product-img" style="margin-top: 20px;">
-                  <%= image_tag @item.image(400,400) %> <!-- no_image.jpgを設定する？-->
               </div>
          </div>
          <br><br><br>
