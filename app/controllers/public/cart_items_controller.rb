@@ -4,9 +4,9 @@ class Public::CartItemsController < ApplicationController
         @cart_items=current_customer.cart_items.all
         if cart_items_params[:amount] !=""
             if @cart_items.any? {|cart_item| cart_item.item_id == params[:cart_item][:id].to_i}
-                @cart_item_already=CartItem.find_by(item_id: params[:cart_item].to_i)
-                @cart_item_already.amount += params[:cart_items][:amount].to_i
-                @cart_item_already.save
+                @cart_item=CartItem.find_by(item_id: params[:cart_item][:id].to_i)
+                @cart_item.amount += params[:cart_item][:amount].to_i #[:cart_itemsになっていたので、エラー。]
+                @cart_item.save
                 flash[:success]="カートに商品を入れました"
                 redirect_to cart_items_path #cart_items/indexへ
             else

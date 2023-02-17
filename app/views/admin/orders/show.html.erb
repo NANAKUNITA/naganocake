@@ -51,12 +51,13 @@
                 <tr>
                     <td><%= order_detail.item.name %></td>
                     <!-- Q.ここの表示↓ -->
-                    <td><%= (order_detail.price).floor.to_s(:delimited, delimiter: ',') %></td>
+                    <td><%= @total %></td>
                     <td><%= order_detail.amount %></td>
-                    <td><%= (order_detail.price * order_detail.amount).floor.to_s(:delimited, delimiter: ',') %></td>
+                    <td><%= (order_detail.price.to_i*order_detail.amount.to_i).floor.to_s(:delimited, delimiter: ',') %></td>
+                        <%#= (order_detail.item.price*order_detail.amount)*1.1.floor %>
                     
                     <!-- 製作ステータスの更新 -->
-                        <%= form_with model: @order_detail, url: admin_order_detail_path(order_detail) do |f| %>
+                        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
                         <td><%= f.select :making_status, ["着手不可", "製作待ち", "製作中", "製作完了"] %></td><!-- ここでステータスの選択ができる -->
                         <td><%= f.submit "更新", class: "btn btn-primary btn-xs" %></td>
                         <% end %>

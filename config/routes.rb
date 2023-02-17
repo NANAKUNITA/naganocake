@@ -14,14 +14,14 @@ Rails.application.routes.draw do
     root 'homes#top'
     get '/about' => 'homes#about'
     resources :items, only:[:index, :show]
-    resources :customers, only:[:show, :edit, :update]
     patch '/customers/withdraw' => 'customers#withdraw'
     get '/customers/confirm_withdraw' => 'customers#confirm'
+    resources :customers, only:[:show, :edit, :update]
     resources :cart_items, only:[:index, :update, :create, :destroy_item]
-    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
-    resources :orders, only:[:new, :create, :index, :show]
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all' 
     post '/orders/confirm' => 'orders#confirm'
-    post '/orders/complete' => 'orders#complete'
+    get '/orders/complete' => 'orders#complete'
+    resources :orders, only:[:new, :create, :index, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
   end
   
@@ -32,7 +32,8 @@ Rails.application.routes.draw do
      resources :genres, only:[:index, :create, :edit, :update]
      resources :customers, only:[:index, :edit, :update, :show]
     #resourcesは７つのアクションが全てデフォルトでついている。onlyをつけることによって、今回使うアクションのみが指定できる。
-     resources :orders, only:[:show,:update] 
+     patch '/admin/order_details/:id' => 'admin/orders_details#update'
+     resources :orders, only:[:show, :update] 
      resources :order_details, only:[:update]
   end
 

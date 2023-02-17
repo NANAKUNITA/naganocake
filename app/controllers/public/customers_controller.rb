@@ -19,11 +19,11 @@ class Public::CustomersController < ApplicationController
      end
      
      def confirm
-         @customer=current_user
+         @customer=current_customer
      end
      
      def withdraw
-         @customer=Customer.find(params[:id])
+         @customer=current_customer
          if @customer.update(is_deleted: true)
              sign_out current_customer
          end

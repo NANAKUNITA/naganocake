@@ -7,9 +7,9 @@ class Public::OrdersController < ApplicationController
      end
      
      def show
-         @order=Order.find(params[:id])#orderを特定
-         @order_item=@order.order_items#特定したordersからorder_itemsを全て取得する
-         @total=0 #変数定義。合計を計算する変数。
+         @order = Order.find(params[:id])
+         @order_details = @order.order_details
+         @total = 0
      end
      
      def new
@@ -62,11 +62,13 @@ class Public::OrdersController < ApplicationController
          @order=Order.new(order_params)
          @order.customer_id=current_customer.id
          @order.save
-         current_customer.cart_items.each do
-             @order_item=OrderItem.new
-             @order_item.item_id=cart_item.item_id
-             @order_item.amount=cart_item.amount
-             @order_item.save
+         current_customer.cart_items.each do |cart_item|
+             @order_detail=OrderDetail.new
+             @order_detail.item_id=cart_item.item_id
+             @order_detail.amount=cart_item.amount
+             @order_detail.order_id=@order.id
+             @order_detail.price = cart_item.item.price
+             @order_detail.save!
          end
          current_customer.cart_items.destroy_all
          redirect_to orders_complete_path

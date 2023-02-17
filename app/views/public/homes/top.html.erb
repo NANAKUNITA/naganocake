@@ -1,40 +1,31 @@
 <div class="container my-5">
-<div class="row login-row">
-    <div class="col-xs-9">
-        <div class="first-view">
-            <div class="first-view-text">
-              <h6>ようこそ、ながのCAKEへ！<br>
-                このサイトは、ケーキ販売のECサイトになります。<br>
-                会員でない方も商品の閲覧はできますが、<br>
-                購入には会員登録が必要になります。
-               </h6>
-            </div>
+    <div class="row">
+        <div class="top-text">
+            <p>ようこそ、ながのCAKEへ！<br>
+               このサイトは、ケーキ販売のECサイトになります。<br>
+               会員でない方も商品の閲覧はできますが、<br>
+               購入には会員登録が必要になります。
+            </p>
         </div>
-        <div class="recommend my-5">
-            <h2><strong>新着商品</strong></h2>
+    </div>
+    <div class="row">
+        <h2 class="title"><strong>新着商品</strong></h2>
+    </div>
+    <div class="row">
         <% @items.each do |item| %>
-            <div class="product-box">
-                <table class="table">
-                    <tr>
-                        <td><%= link_to item_path(item) do %>
-                        <%= image_tag item.get_image %>
-                        <% end %>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><%= link_to item.name, item_path(item) %></td>
-                    </tr>
-                    <tr>
-                        <td>¥<%= (item.price*1.1).to_i %></td>
-                        <!-- priceと*1.1の間は空けない -->
-                    </tr>
-                </table>
-            </div>
-         <% end %>
+        <div class="col-md-3">
+           <%= link_to item_path(item) do %>
+           <%= image_tag item.get_image %>
+           <% end %>
+           <%= link_to item.name, item_path(item) %>
+           ¥<%= (item.price*1.1).to_i %>
+        </div>        
+        <% end %>
+    </div>
+    <div class="row">
+        <div class="all-item">
+            <%= link_to "すべての商品を見る>", items_path %>
         </div>
     </div>
-    <div class="index-link ml-5">
-        <%= link_to "すべての商品を見る>", items_path %>
-    </div>
 </div>
-</div>
+  

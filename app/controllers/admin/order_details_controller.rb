@@ -2,7 +2,7 @@ class Admin::OrderDetailsController < ApplicationController
     before_action :authenticate_admin!
     
     def update
-        @order_detail=Order_detail.find(params[:id]) #特定する
+        @order_detail=OrderDetail.find(params[:id]) #特定する
         @order= @order_detail.order #注文商品から注文テーブルの呼び出し（処理を増やさないため）
         @order_detail.update(order_detail_params) #製作ステータスの更新
         

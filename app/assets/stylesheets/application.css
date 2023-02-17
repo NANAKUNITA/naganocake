@@ -27,7 +27,7 @@ header {
   height: 120px; /* 高さ120px */
   padding: 15px 0;
   margin: 0 auto;
-  background-color: seagreen;
+  background-color: #ffa3a3;
 }
 body{
   font-family: sans-serif;
@@ -89,7 +89,7 @@ body{
 footer{
  border-top: 1px solid #545b64;
     line-height: 14px;
-  background-color: seagreen;
+  background-color: #ffa3a3;
 }
 
 .recommendation-items {
