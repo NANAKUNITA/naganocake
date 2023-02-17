@@ -1,11 +1,13 @@
 <div class="container my-5">
-    <div class="row">
-        <div class="top-text">
+    <div class="row homesimgae">
+        <div class="col-md-12">
+        <div class="top-text"><br><br><br><br>
             <p>ようこそ、ながのCAKEへ！<br>
                このサイトは、ケーキ販売のECサイトになります。<br>
                会員でない方も商品の閲覧はできますが、<br>
                購入には会員登録が必要になります。
             </p>
+        </div>
         </div>
     </div>
     <div class="row">
@@ -13,19 +15,18 @@
     </div>
     <div class="row">
         <% @items.each do |item| %>
-        <div class="col-md-3">
+        <div class="col-md-3"><br>
            <%= link_to item_path(item) do %>
            <%= image_tag item.get_image %>
            <% end %>
+           <br><br>
            <%= link_to item.name, item_path(item) %>
            ¥<%= (item.price*1.1).to_i %>
         </div>        
         <% end %>
-    </div>
-    <div class="row">
-        <div class="all-item">
+    </div><br>
+        <p class="all-item">
             <%= link_to "すべての商品を見る>", items_path %>
-        </div>
-    </div>
+        </p>
 </div>
   

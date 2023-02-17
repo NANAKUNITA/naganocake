@@ -8,8 +8,10 @@ class Public::OrdersController < ApplicationController
      
      def show
          @order = Order.find(params[:id])
-         @order_details = @order.order_details
-         @total = 0
+         @order_details = @order.order_details.all
+         @sum= 0
+         @subtotals=@order_details.map { |order_detail| order_detail.price*order_detail.amount }
+         @sum=@subtotals.sum
      end
      
      def new

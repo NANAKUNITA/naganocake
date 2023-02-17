@@ -43,8 +43,8 @@
             </div>
         </div>
     </div><br>
-    <p><strong>支払方法</strong><%= @order.payment_method %></p><br>
-    <p><strong>お届け先</strong><%= @order.postal_code %><%= @order.address %><%= @order.name %></p><br>
+    <p><strong>支払方法</strong>&emsp;<%= @order.payment_method %></p><br>
+    <p><strong>お届け先</strong>&emsp;<%= @order.postal_code %>&emsp;<%= @order.address %>&emsp;<%= @order.name %></p><br>
     <%= f.hidden_field :payment_method, :value => @order.payment_method %>
     <%= f.hidden_field :shipping_cost, :value => 800 %>
     <%= f.hidden_field :address, :value => @order.address %>

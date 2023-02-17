@@ -1,28 +1,19 @@
 <div class="container my-5">
-<div class="row login-row">
-    <div class="col-xs-3">
+    <div class="row 1">
+        <h2 class="title"><strong><%= "商品一覧(全#{@amount}件)" %></strong></h2>
     </div>
-    <div class="offset-sm-1 col-xs-9">
-        <h2 class="red-border px-3 pb-1"><%= "商品一覧(全#{@amount}件)" %></h2>
+    <div class="row 2">
         <% @items.each do |item| %>
-          <div class="item-box">
-            <table class="table">
-                <tr>
-                    <th><%= link_to item_path(item) do %>
-                        <%= image_tag item.get_image %>
-                    <% end %>
-                    </th>
-                </tr>
-                <tr>
-                    <th><%= item.name %></th>
-                </tr>
-                <tr>
-                    <th>¥<%= (item.price*1.1).to_i %></th>
-                </tr>
-            </table>
-          </div>
+        <div class="col-md-3">
+            <%= link_to item_path(item) do %>
+            <%= image_tag item.get_image %>
+            <% end %>
+            <br><br>
+            <%= link_to item.name, item_path(item) %>
+            ¥<%= (item.price*1.1).to_i %>
+        </div>
         <% end %>
+    </div><br>
         <%= paginate @items %>
-    </div>
 </div>
-</div>
+

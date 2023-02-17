@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
      before_action :authenticate_customer!
      
      def index
-         @items=Item.where(is_active: true).page(params[:page]).per(4)
+         @items=Item.where(is_active: true).page(params[:page]).per(8)
          @amount=Item.count
      end
      
