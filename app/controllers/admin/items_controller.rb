@@ -11,7 +11,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item=Item.new(item_params)
     if @item.save
-      redirect_to admin_item_path(@item.id)#ここはいらない？
+      redirect_to admin_item_path(@item.id)
     else
       redirect_to new_admin_item_path
     end
@@ -27,7 +27,8 @@ class Admin::ItemsController < ApplicationController
 
   def update
     @item=Item.find(params[:id])
-    if @item.update(item_params)
+
+    if @item.update!(item_params)
       redirect_to admin_item_path(@item)
     else
       render "show"
